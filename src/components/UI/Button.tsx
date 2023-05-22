@@ -3,6 +3,9 @@ import styles from './Button.module.css';
 
 
 const Button = (props: ButtonType) => {
+    /**
+     * Standard button component
+     */
     return (
         <button className={styles.button} type={props.type} onClick={props.onClick}>
             {props.children}

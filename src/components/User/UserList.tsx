@@ -4,6 +4,9 @@ import UserInterface from "../../types/UserInterface";
 import UserItem from "./UserItem";
 
 const UserList = ({ users }: { users: UserInterface[] }) => {
+  /**
+   * Component for displaying a list of users
+   */
   return (
     <Card>
       <div className={styles.user_list}>

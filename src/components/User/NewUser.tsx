@@ -9,20 +9,35 @@ import UserInterface from "../../types/UserInterface";
 
 
 const NewUser = ({onNewUser}: {onNewUser: (user: UserInterface)=> void}) => {
+  /**
+   * Component for adding a new user
+   * handles input of new user and passes it to parent component
+   */
   const [enteredUsernname, setEnteredUsername] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
 
   const usernameChangeHandler: InputHandler = (event) => {
+    /**
+     * handles state change of username input from child components
+     */
     setEnteredUsername(event.target.value);
   };
 
   const ageChangeHandler: InputHandler = (event) => {
+    /**
+     * handles state change of age input from child components
+     */
     setEnteredAge(event.target.value);
   };
 
     
 
   const submitHandler = (event: any) => {
+    /**
+     * handles form submission
+     * passes new user data to parent component
+     * resets state
+     */
     event.preventDefault();
     if(enteredAge.trim().length === 0 || enteredUsernname.trim().length === 0){
       return;

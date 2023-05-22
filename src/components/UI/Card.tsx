@@ -1,10 +1,14 @@
 import React from 'react';
 import styles from './Card.module.css';
 
-const Card = (props: any) => {
+const Card = ({children}: {children: any}) => {
+    /**
+     * Standard layout card component
+     * defines background width margin and border 
+     */
     return (
         <div className={styles.card}>
-            {props.children}
+            {children}
         </div>
     );
 }
