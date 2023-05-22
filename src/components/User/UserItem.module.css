@@ -1,0 +1,7 @@
+.user_item{
+    /* font-size: 1.25rem; */
+    font-weight: bold;
+    margin: 1rem 0;
+    border: 1px solid #ccc;
+    padding: 0.25rem 0.5rem;
+}

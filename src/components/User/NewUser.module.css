@@ -1,0 +1,22 @@
+.new_user{
+    padding: 20px;
+}
+
+.new_user__controls{
+    display: block;
+}
+
+.new_user__controls label{
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.new_user__control {
+    margin-bottom: 5px;
+}
+
+
+.new_user__actions{
+    
+}
