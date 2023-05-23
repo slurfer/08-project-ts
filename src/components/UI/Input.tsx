@@ -1,7 +1,12 @@
 import React from 'react';
 import styles from './Input.module.css';
-import InputInterface from '../../types/InputInterface';
 
+
+interface InputInterface {
+    type: "text"|"number"|"date";
+    onChange: (event: any) => void;
+    value: string;
+}
 
 
 const Input = (props: InputInterface) => {

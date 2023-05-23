@@ -2,10 +2,10 @@ import styles from "./NewUser.module.css";
 import Input from "../UI/Input";
 import Card from "../UI/Card";
 import { useState } from "react";
-import InputHandler from "../../types/InputHandler";
 import Button from "../UI/Button";
 import UserInterface from "../../types/UserInterface";
-
+import ErrorInterface from "../../types/ErrorInterface";
+import Error from "../Error/Error";
 
 
 const NewUser = ({onNewUser}: {onNewUser: (user: UserInterface)=> void}) => {
@@ -16,6 +16,7 @@ const NewUser = ({onNewUser}: {onNewUser: (user: UserInterface)=> void}) => {
   const [enteredUsernname, setEnteredUsername] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
 
+  type InputHandler = (input: any) => void;
   const usernameChangeHandler: InputHandler = (event) => {
     /**
      * handles state change of username input from child components
@@ -37,12 +38,23 @@ const NewUser = ({onNewUser}: {onNewUser: (user: UserInterface)=> void}) => {
      * handles form submission
      * passes new user data to parent component
      * resets state
+     * handles errors
      */
     event.preventDefault();
     if(enteredAge.trim().length === 0 || enteredUsernname.trim().length === 0){
+      const errorObject : ErrorInterface = {
+        title: "Invalid input",
+        message: "Please enter a valid name and age (non-empty values).",
+      };
+      setError(errorObject);
       return;
     }
     if(+enteredAge < 1){
+      const errorObject : ErrorInterface = {
+        title: "Invalid age",
+        message: "Please enter age with value greater or equal to 1.",
+      };
+      setError(errorObject);
       return;
     }
     const userData: UserInterface = {
@@ -54,8 +66,15 @@ const NewUser = ({onNewUser}: {onNewUser: (user: UserInterface)=> void}) => {
     setEnteredUsername("");
     setEnteredAge("");
   };
+
+  const [error, setError] = useState<any>();
+  const onError = () => {
+    console.log("onError")
+    setError(null);
+  };
   return (
     <Card>
+      {error && <Error errorObject={error} onClose={onError}/>}
       <div className={styles.new_user}>
         <form  onSubmit={submitHandler}>
           <div className={styles.new_user__controls}>
